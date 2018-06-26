@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Store/etc/config.xsd">
+    <default>
+        <exponea_exponea>
+            <general>
+                <enable>0</enable>
+                <enable>0</enable>
+                <public_token></public_token>
+                <private_token></private_token>
+                <project_token></project_token>
+                <endpoint></endpoint>
+            </general>
+        </exponea_exponea>
+    </default>
+</config>

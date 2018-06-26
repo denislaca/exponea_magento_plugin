@@ -1,0 +1,24 @@
+<?xml version="1.0" ?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+	<event name="sales_order_save_after">
+		<observer instance="Exponea\Exponea\Observer\Sales\OrderSaveAfter" name="exponea_exponea_observer_sales_ordersaveafter_sales_order_save_after"/>
+	</event>
+	<event name="sales_order_payment_pay">
+		<observer instance="Exponea\Exponea\Observer\Sales\OrderPaymentPay" name="exponea_exponea_observer_sales_orderpaymentpay_sales_order_payment_pay"/>
+	</event>
+	<event name="checkout_cart_add_product_complete">
+		<observer instance="Exponea\Exponea\Observer\Checkout\CartAddProductComplete" name="exponea_exponea_observer_checkout_cartaddproductcomplete_checkout_cart_add_product_complete"/>
+	</event>
+	<event name="customer_register_success">
+		<observer instance="Exponea\Exponea\Observer\Customer\RegisterSuccess" name="exponea_exponea_observer_customer_registersuccess_customer_register_success"/>
+	</event>
+	<event name="customer_save_after_data_object">
+		<observer instance="Exponea\Exponea\Observer\Customer\SaveAfterDataObject" name="exponea_exponea_observer_customer_saveafterdataobject_customer_save_after_data_object"/>
+	</event>
+	<event name="checkout_cart_product_update_after">
+		<observer instance="Exponea\Exponea\Observer\Checkout\CartProductUpdateAfter" name="exponea_exponea_observer_checkout_cartproductupdateafter_checkout_cart_product_update_after"/>
+	</event>
+	<event name="checkout_cart_save_after">
+		<observer instance="Exponea\Exponea\Observer\Checkout\CartSaveAfter" name="exponea_exponea_observer_checkout_cartsaveafter_checkout_cart_save_after"/>
+	</event>
+</config>

@@ -1,0 +1,26 @@
+{
+    "name": "exponea/module-exponea",
+    "description": "",
+    "type": "magento2-module",
+    "license": "proprietary",
+    "authors": [
+        {
+            "email": "info@mage2gen.com",
+            "name": "Mage2Gen"
+        },
+        {
+            "email": "denis.laca@exponea.com",
+            "name": "Denis Laca"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {},
+    "autoload": {
+        "psr-4": {
+            "Exponea\\Exponea\\": ""
+        },
+        "files": [
+            "registration.php"
+        ]
+    }
+}

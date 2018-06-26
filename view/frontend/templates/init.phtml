@@ -1,0 +1,54 @@
+<script>(function(d,b){if(!d.exponea){var a=function(a,g){function k(c){return function(){var e=arguments;""==a&&"initialize"==c&&e&&e[0].modify&&e[0].modify.overlay&&"loading"==b.readyState&&(b.write('<div id="__inf__overlay__" style="position:absolute;background:#fff;left:0;top:0;width:100%;height:100%;z-index:1000000"></div>'),setTimeout(function(){var a=b.getElementById("__inf__overlay__");a&&b.body.removeChild(a);res.__=!0},e[0].modify.delay||500));d.exponea._.push([a+c,arguments])}}var h=g.split(" "),f,c;res={_:[]};for(c=0;c<h.length;c++)f=h[c],res[f]=k(f);return res};d.exponea=a("","initialize identify update track trackLink trackEnhancedEcommerce getHtml showHtml showBanner showForm ping getAbTest");d.exponea.notifications=a("notifications.","isAvailable isSubscribed subscribe unsubscribe");var a=b.createElement("script"),g="https:"===b.location.protocol?"https:":"http:";a.type="text/javascript";a.async=!0;a.src=g+"//api.exponea.com/js/exponea.min.js";b.getElementsByTagName("head")[0].appendChild(a)}})(window,document);</script>
+<script type="text/javascript">
+  exponea.initialize({
+    "token": "<?php echo $block->getProjectToken(); ?>",
+    "target": "<?php echo $block->getEndpoint(); ?>",
+    "track": {
+      "visits": true
+    }
+  });
+
+  if ("<?php echo $block->isCustomerLoggedIn(); ?>" === "1") {
+    var header = {}
+    header.registered = "<?php echo $block->getCustomerEmail(); ?>";
+    "<?php if ($block->userIdEnabled()) { echo "header.user_id = " . $block->getCustomerId(); }?>";
+    exponea.identify(
+      header,
+    {
+      "email" : "<?php echo $block->getCustomerEmail(); ?>",
+      "first_name" : "<?php echo $block->getCustomerFirstname(); ?>",
+      "last_name" : "<?php echo $block->getCustomerLastname(); ?>",
+    });
+  }
+  if (document.getElementsByClassName('catalog-category-view').length > 0) {
+
+    let breadCrumbs = ''
+    const items = document.getElementsByClassName('breadcrumbs')[0].getElementsByTagName('li')
+    items.forEach(item => breadCrumbs = `${breadCrumbs} > ${item.innerText.trim()}`)
+
+    const dataObj = {
+      category_name: document.getElementById('page-title-heading').innerText.trim(),
+      location: document.location.href,
+      category_path: breadCrumbs, 
+    }
+    exponea.track('view_category', dataObj)
+  }
+
+  if (document.getElementsByClassName('catalog-product-view').length > 0) {
+    const productInfo = document.getElementsByClassName('product-info-main')[0]
+    const priceInfo = productInfo.getElementsByClassName('price-wrapper')[0]
+      .innerText.trim()
+      .replace(/([^\d]*)(\d*)([^\w]*)/,
+        (match, a, b, c, off, str) => [a,b,c].join('-')
+      ).split('-')
+    const dataObj = {
+      product_title: productInfo.getElementsByClassName('page-title-wrapper')[0].innerText.trim(),
+      variant_price: parseDouble(priceInfo.splice(1,2).join('')),
+      local_currency: priceInfo[0],
+      location: document.location.href,
+      domain: document.location.origin,
+    }
+    exponea.track('view_item', dataObj)
+
+  }
+</script>

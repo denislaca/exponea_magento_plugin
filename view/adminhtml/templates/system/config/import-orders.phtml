@@ -1,0 +1,58 @@
+<p class="note" style="padding-bottom: 10px;">
+<span>
+Template message
+</span>
+</p>
+<script>
+    require([
+        'jquery',
+        'prototype'
+    ], function(jQuery){
+
+        var importOrdersSpan = jQuery('#import_orders_span');
+
+        jQuery('#import_orders').click(function () {
+            var params = {};
+            new Ajax.Request('<?php echo $block->getAjaxUrl() ?>', {
+                parameters:     params,
+                loaderArea:     false,
+                asynchronous:   true,
+                onCreate: function() {
+                    importOrdersSpan.find('.imported').hide();
+                    importOrdersSpan.find('.processing').show();
+                    jQuery('#import_orders_message_span').text('');
+                },
+                onSuccess: function(response) {
+                    importOrdersSpan.find('.processing').hide();
+
+                    var resultText = '';
+                    if (response.status > 200) {
+                        resultText = response.statusText;
+                    } else { 
+                        var json = response.responseJSON;
+                        if (!json.success) {
+                            resultText = json.error;
+                        } else {
+                            resultText = 'Success';
+                            importOrdersSpan.find('.imported').show();
+                        }
+                    }
+                    jQuery('#import_orders_message_span').text(resultText);
+                },
+                onFailure: function(response) {
+                    importOrdersSpan.find('.processing').hide();           
+                    jQuery('#import_orders_message_span').text('Error ' + response.status);
+                    console.log(response);
+                }
+            });
+        });
+
+    });
+</script>
+<?php echo $block->getButtonHtml() ?>
+<span class="import-orders-indicator" id="import_orders_span">
+    <img class="processing" hidden="hidden" alt="Importing" style="margin:0 5px" src="<?php echo $block->getViewFileUrl('images/process_spinner.gif') ?>"/>
+    <img class="imported" hidden="hidden" alt="Imported" style="margin:-3px 5px" src="<?php echo $block->getViewFileUrl('images/rule_component_apply.gif') ?>"/>
+    <span id="import_orders_message_span"></span>
+</span>
+

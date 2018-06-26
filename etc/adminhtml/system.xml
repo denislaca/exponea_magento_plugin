@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../Magento/Store/etc/config.xsd">
+  <system>
+    <tab id="exponea" translate="label" sortOrder="5">
+      <label>Exponea</label>
+    </tab>
+    <section id="exponea_exponea" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+      <label>Tracking</label>
+      <tab>exponea</tab>
+      <resource>Exponea_Exponea::exponea_exponea</resource>
+      <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+        <label>Tracking</label>
+        <field id="enable" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Enable Exponea</label>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+          <comment>
+            Select Yes to enable Exponea data tracking.
+          </comment>
+        </field>
+        <field id="enable_data_id" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Enable tracking by user ID</label>
+          <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+          <comment>
+            Select Yes to enable Exponea tracking by user ID.
+          </comment>
+        </field>
+        <field id="public_token" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Public token</label>
+        </field>
+        <field id="private_token" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Private token</label>
+        </field>
+        <field id="project_token" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Project token</label>
+        </field>
+        <field id="endpoint" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Tracking API Endpoint</label>
+        </field>
+        <field id="import_orders" translate="label comment" type="button" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <frontend_model>Exponea\Exponea\Block\System\Config\ImportOrders</frontend_model> 
+        </field>
+        <field id="catalog_name" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+          <label>Catalog name</label>
+          <comment>
+            Name of newly created catalog - for Exponea api.
+          </comment>
+        </field>
+        <field id="import_catalog" translate="label comment" type="button" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+            <frontend_model>Exponea\Exponea\Block\System\Config\ImportCatalog</frontend_model> 
+        </field>
+      </group>
+    </section>
+  </system> 
+</config>
